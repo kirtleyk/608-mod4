@@ -1,20 +1,15 @@
-# fig06_02.py
+# Module 4 bonus assignment
 """Tokenizing a string and counting unique words."""
-from io import StringIO
-from html.parser import HTMLParser
-from nltk.corpus import stopwords
 import re
 import string
-from nltk.stem.porter import PorterStemmer
 from nltk.stem import WordNetLemmatizer
-from nltk.corpus.reader import WordListCorpusReader
 
+#Open the file and read contents saving as text
 with open('100west.txt', 'r', errors="ignore", encoding='utf-8') as data:
     text = data.read()
 data.close()
 
-#sys.exit()
-
+# Clean the text of special characters
 # encoding the text to ASCII format
 text_encode = text.encode(encoding="ascii", errors="ignore")
 # decoding the text
@@ -32,10 +27,10 @@ text = text.lower()
 punct = set(string.punctuation) 
 text = "".join([ch for ch in text if ch not in punct])
 
-#remove numbers
+#remove any numbers
 text = re.sub("[0-9]", "", text)
 
-# remove common words that add no meaning
+# common words list that add little to no meaning
 stop_words = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', "she's", 'her', 'hers', 'herself', 'it', "it's", 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'this', 'that', "that'll", 'these', 'those', 'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 'does', 'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until', 'while', 'of', 'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'to', 'from', 'many', 'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', "don't", 'should', "should've", 'now', 'd', 'll', 'm', 'o', 're', 've', 'y', 'ain', 'aren', "aren't", 'couldn', "couldn't", 'didn', "didn't", 'doesn', "doesn't", 'hadn', "hadn't", 'hasn', "hasn't", 'haven', "haven't", 'isn', "isn't", 'ma', 'mightn', "mightn't", 'mustn', "mustn't", 'needn', "needn't", 'shan', "shan't", 'shouldn', "shouldn't", 'wasn', "wasn't", 'weren', "weren't", 'won', "won't", 'wouldn', "wouldn't", 'yet', 'x']
 
 #Remove stop words and Lematize words
